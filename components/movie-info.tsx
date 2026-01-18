@@ -22,10 +22,9 @@ export default async function MovieInfo({id}: {id:string}){
              target={"_blank"}>
             Homepage &rarr;
           </a>
-          <div className={styles.link}>
-            <Link href={`/movies/${id}/credits`}>Credits &rarr;</Link>
-            <Link href={`/movies/${id}/providers`}>Providers &rarr;</Link>
-          </div>
+          <Link href={`/movies/${id}/credits`}>Credits &rarr;</Link>
+          <Link href={`/movies/${id}/providers`}>Providers &rarr;</Link>
+          <Link href={`/movies/${id}/similar`}>Similar Movies &rarr;</Link>
         </div>
       </div>
   );
