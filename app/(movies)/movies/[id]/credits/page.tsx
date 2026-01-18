@@ -3,6 +3,14 @@ import {getMovie} from "../../../../../components/movie-info";
 import Link from "next/link";
 import {API_URL} from "../../../../api";
 
+// 타입 정의 추가
+interface Credit {
+  id: number;
+  name: string;
+  character: string;
+  profile_path: string;
+}
+
 export async function generateMetadata({params}:{params:{id:string}}) {
   const {id} = await params;
 
@@ -13,7 +21,7 @@ export async function generateMetadata({params}:{params:{id:string}}) {
   }
 }
 
-async function getCredits(id: string) {
+async function getCredits(id: string): Promise<Credit[]> {
   const response = await fetch(`${API_URL}/${id}/credits`);
   return response.json();
 }
@@ -33,7 +41,9 @@ export default async function MovieCredits({params}:{params:{id:string}}) {
           {credits.map(credit => (
               <div key={credit.id}>
                 <img
-                    src={credit.profile_path}/>
+                    src={credit.profile_path}
+                    alt={credit.name}
+                />
                 <h3>{credit.name}</h3>
                 <h3 className={styles.character}>{credit.character}</h3>
               </div>))}

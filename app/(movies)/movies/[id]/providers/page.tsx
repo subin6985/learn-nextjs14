@@ -3,6 +3,25 @@ import {getMovie} from "../../../../../components/movie-info";
 import Link from "next/link";
 import {API_URL} from "../../../../api";
 
+// 타입 정의 추가
+interface Provider {
+  logo_path: string;
+  provider_id: number;
+  provider_name: string;
+  display_priority: number;
+}
+
+interface CountryData {
+  link: string;
+  buy?: Provider[];
+  rent?: Provider[];
+  flatrate?: Provider[];
+}
+
+interface Providers {
+  [countryCode: string]: CountryData;
+}
+
 export async function generateMetadata({params}:{params:{id:string}}) {
   const {id} = await params;
 
@@ -13,7 +32,7 @@ export async function generateMetadata({params}:{params:{id:string}}) {
   }
 }
 
-async function getProviders(id: string) {
+async function getProviders(id: string): Promise<Providers> {
   const response = await fetch(`${API_URL}/${id}/providers`);
   return response.json();
 }
@@ -30,13 +49,13 @@ export default async function MovieProviders({params}:{params:{id:string}}) {
               href={`/movies/${movie.id}`}
         >&larr; {movie.title}</Link>
         {Object.keys(providers).length === 0 ? (
-            <p className={styles.no}>No providers avaliable</p>
+            <p className={styles.no}>No providers available</p>
         ) : (
             <div className={styles.container}>
               {Object.entries(providers).map(([countryCode, data]) => (
                   <div className={styles.part} key={countryCode}>
                     <Link className={styles.country}
-                          href={providers[countryCode].link}
+                          href={data.link}
                     >{countryCode}</Link>
                     {data.buy && (
                         <div>
@@ -44,7 +63,10 @@ export default async function MovieProviders({params}:{params:{id:string}}) {
                           <div className={styles.wrapper}>
                             {data.buy.map((provider) => (
                                 <div key={provider.provider_id}>
-                                  <img src={provider.logo_path} />
+                                  <img
+                                      src={provider.logo_path}
+                                      alt={provider.provider_name}
+                                  />
                                   <p>{provider.provider_name}</p>
                                 </div>
                             ))}
