@@ -24,3 +24,9 @@
   margin-top: 20px;
   gap: 20px;
 }
+
+.link {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}

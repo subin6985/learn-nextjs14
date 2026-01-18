@@ -1,0 +1,55 @@
+.container {
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  margin-top: 100px;
+  padding-bottom: 100px;
+}
+
+.container h3 {
+  margin-top: 20px;
+}
+
+.title {
+  color: white;
+  font-size: 36px;
+  font-weight: 600;
+  margin-left: 10%;
+}
+
+.part {
+  padding-bottom: 50px;
+}
+
+.country {
+  color: white;
+  font-size: 24px;
+}
+
+/* flexbox로 중앙정렬 맞추기 */
+.wrapper {
+  width: 80%;
+  margin: 20px auto;
+  padding-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+}
+
+.wrapper > * {
+  width: 150px;
+  flex-shrink: 0;
+}
+
+.wrapper img {
+  border-radius: 10px;
+  max-width: 70%;
+  place-self: center;
+  margin-bottom: 10px;
+}
+
+.no {
+  margin-top: 50px;
+  margin-left: 15%;
+}

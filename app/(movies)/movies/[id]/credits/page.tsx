@@ -9,7 +9,7 @@ export async function generateMetadata({params}:{params:{id:string}}) {
   const movie = await getMovie(id);
 
   return {
-    title: `${movie.title} Credit`,
+    title: `${movie.title} Credits`,
   }
 }
 
