@@ -1,7 +1,7 @@
-import {API_URL} from "../../../../(home)/page";
 import styles from "../../../../../styles/movie-providers.module.css";
 import {getMovie} from "../../../../../components/movie-info";
 import Link from "next/link";
+import {API_URL} from "../../../../api";
 
 export async function generateMetadata({params}:{params:{id:string}}) {
   const {id} = await params;
