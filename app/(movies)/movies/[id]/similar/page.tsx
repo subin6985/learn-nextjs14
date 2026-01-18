@@ -19,7 +19,7 @@ async function getSimilar(id: string) {
   return response.json();
 }
 
-export default async function SimilarPage({params}:{parmas:{id:string}}) {
+export default async function SimilarPage({params}:{params:{id:string}}) {
   const {id} = await params;
 
   const movie = await getMovie(id);
